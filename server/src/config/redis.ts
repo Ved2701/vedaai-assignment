@@ -1,11 +1,12 @@
-import { ConnectionOptions }
-  from "bullmq";
+import { ConnectionOptions } from "bullmq";
 
-export const redisConnection:
-  ConnectionOptions = {
+export const redisConnection: ConnectionOptions = {
+  host:
+    process.env.REDIS_HOST ||
+    "127.0.0.1",
 
-  host: "127.0.0.1",
-
-  port: 6379,
-
+  port:
+    Number(
+      process.env.REDIS_PORT
+    ) || 6379,
 };
