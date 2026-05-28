@@ -29,10 +29,9 @@ export default function AssignmentsPage() {
 
       try {
 
-        const response =
-          await axios.get(
-            "http://localhost:5000/api/assignments"
-          );
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/assignments`
+        );
 
         setAssignments(response.data);
 
@@ -59,8 +58,8 @@ export default function AssignmentsPage() {
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/assignments/${id}`
-      );
+  `${process.env.NEXT_PUBLIC_API_URL}/api/assignments/${id}`
+);
 
       setAssignments(
         assignments.filter(

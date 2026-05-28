@@ -89,7 +89,7 @@ export default function CreateAssignmentPage() {
     );
 
     const response = await axios.post(
-      "http://localhost:5000/api/assignments",
+  `${process.env.NEXT_PUBLIC_API_URL}/api/assignments`,
       {
 
         subject,
