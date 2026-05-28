@@ -1,12 +1,17 @@
-import { ConnectionOptions } from "bullmq";
+import Redis from "ioredis";
 
-export const redisConnection: ConnectionOptions = {
-  host:
-    process.env.REDIS_HOST ||
-    "127.0.0.1",
+const redis = new Redis({
+  host: process.env.REDISHOST,
+  port: Number(process.env.REDISPORT),
+  maxRetriesPerRequest: null,
+});
 
-  port:
-    Number(
-      process.env.REDIS_PORT
-    ) || 6379,
-};
+redis.on("connect", () => {
+  console.log("Redis Connected");
+});
+
+redis.on("error", (err) => {
+  console.log("Redis Error:", err);
+});
+
+export default redis;
