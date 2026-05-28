@@ -7,6 +7,7 @@ export const assignmentQueue =
       connection: {
         host: process.env.REDISHOST,
         port: Number(process.env.REDISPORT),
+        password: process.env.REDISPASSWORD,
       },
     }
   );
