@@ -1,6 +1,6 @@
 import { Worker } from "bullmq";
 
-import { redisConnection }
+import redis
   from "../config/redis";
 
 import Assignment
@@ -57,10 +57,10 @@ new Worker(
     );
 
   },
-
   {
-    connection:
-      redisConnection,
-  }
-
+  connection: {
+    host: process.env.REDISHOST,
+    port: Number(process.env.REDISPORT),
+  },
+}  
 );
