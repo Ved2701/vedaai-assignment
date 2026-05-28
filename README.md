@@ -21,7 +21,7 @@ AI-powered assessment creator built with Next.js, Node.js, MongoDB, Redis, BullM
 * Next.js
 * TypeScript
 * Zustand
-* Socket.IO Client
+* Socket.IO Client (WebSockets)
 
 ### Backend
 
@@ -31,7 +31,12 @@ AI-powered assessment creator built with Next.js, Node.js, MongoDB, Redis, BullM
 * MongoDB
 * Redis
 * BullMQ
-* Socket.IO
+* Socket.IO (WebSockets)
+
+### AI
+
+* OpenAI API
+* Prompt Structuring & Parsing
 
 ---
 
