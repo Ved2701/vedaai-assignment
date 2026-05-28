@@ -1,59 +1,140 @@
 # VedaAI – AI Assessment Creator
 
-AI-powered assessment creator built with Next.js, Node.js, MongoDB, Redis, BullMQ, and WebSockets.
+An AI-powered Assessment Creation platform built using **Next.js, Node.js, MongoDB, Redis, BullMQ, and WebSockets**.
 
-## Features
-
-* AI-generated structured question papers
-* Real-time updates using WebSockets
-* Assignment management
-* PDF export support
-* Redis + BullMQ background job processing
-* MongoDB storage
-* Responsive UI inspired by provided Figma
+The platform allows teachers to generate structured AI-based question papers with real-time processing, background job queues, PDF export, and live updates.
 
 ---
 
-## Tech Stack
+# Live Demo
 
-### Frontend
+## Frontend
+
+https://vedaai-assignment-ebon.vercel.app/
+
+## Backend
+
+https://vedaai-assignment-production-f2a0.up.railway.app/
+
+---
+
+# Features
+
+## Assignment Creation
+
+* Create AI-powered assessments
+* Configure:
+
+  * Due date
+  * Question types
+  * Marks distribution
+  * Number of questions
+  * Additional instructions
+* Input validation and error handling
+
+---
+
+## AI Question Generation
+
+* Converts form input into structured prompts
+* Generates:
+
+  * Exam Sections (A, B, etc.)
+  * Questions
+  * Difficulty Levels
+  * Marks Distribution
+* Structured parsing instead of rendering raw LLM output
+
+---
+
+## Real-Time Architecture
+
+* BullMQ queue-based background processing
+* Redis-powered job management
+* Socket.IO real-time updates
+* Live frontend status synchronization
+
+---
+
+## Output Generation
+
+* Structured exam-paper UI
+* Student information section
+* Difficulty badges
+* Section-wise organization
+* Clean responsive layout
+* PDF export support
+
+---
+
+# Tech Stack
+
+## Frontend
 
 * Next.js
 * TypeScript
 * Zustand
-* Socket.IO Client (WebSockets)
+* Tailwind CSS
+* Socket.IO Client
 
-### Backend
+---
+
+## Backend
 
 * Node.js
-* Express
+* Express.js
 * TypeScript
 * MongoDB
 * Redis
 * BullMQ
-* Socket.IO (WebSockets)
+* Socket.IO
 
-### AI
+---
+
+## AI
 
 * OpenAI API
-* Prompt Structuring & Parsing
+* Prompt Engineering
+* Structured Output Parsing
 
 ---
 
-## Architecture Flow
+# System Architecture
+
+```text
+Frontend (Next.js)
+        ↓
+Express API Server
+        ↓
+BullMQ Queue (Redis)
+        ↓
+AI Worker Processing
+        ↓
+MongoDB Storage
+        ↓
+WebSocket Event Emission
+        ↓
+Frontend Real-Time Updates
+```
+
+---
+
+# Project Workflow
 
 1. User creates assignment
-2. Backend adds job to BullMQ queue
-3. Worker processes AI generation
-4. MongoDB stores assignment
-5. WebSocket notifies frontend
-6. Frontend displays generated paper
+2. Backend validates request
+3. BullMQ adds generation job
+4. Worker processes AI generation
+5. Structured assignment stored in MongoDB
+6. WebSocket emits live updates
+7. Frontend displays generated paper
+8. User exports generated paper as PDF
 
 ---
 
-## Local Setup
+# Local Setup
 
-### Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/Ved2701/vedaai-assignment.git
@@ -61,16 +142,16 @@ git clone https://github.com/Ved2701/vedaai-assignment.git
 
 ---
 
-## Install Dependencies
+# Install Dependencies
 
-### Client
+## Frontend
 
 ```bash
 cd client
 npm install
 ```
 
-### Server
+## Backend
 
 ```bash
 cd server
@@ -79,7 +160,7 @@ npm install
 
 ---
 
-## Run Redis
+# Run Redis
 
 ```bash
 docker run -d -p 6379:6379 redis
@@ -87,7 +168,7 @@ docker run -d -p 6379:6379 redis
 
 ---
 
-## Start Frontend
+# Start Frontend
 
 ```bash
 cd client
@@ -96,7 +177,7 @@ npm run dev
 
 ---
 
-## Start Backend
+# Start Backend
 
 ```bash
 cd server
@@ -105,21 +186,89 @@ npm run dev
 
 ---
 
-## Environment Variables
+# Environment Variables
 
-### Server `.env`
+## Frontend (`client/.env.local`)
+
+```env
+NEXT_PUBLIC_API_URL=your_backend_url
+```
+
+---
+
+## Backend (`server/.env`)
 
 ```env
 MONGO_URI=your_mongodb_uri
-OPENAI_API_KEY=your_api_key
+
+OPENAI_API_KEY=your_openai_api_key
+
+REDIS_HOST=localhost
+REDIS_PORT=6379
+
 PORT=5000
 ```
 
 ---
 
-## Bonus Features
+# Folder Structure
 
-* PDF export
-* Real-time socket updates
+```text
+client/
+ ├── src/
+ ├── app/
+ ├── components/
+ ├── store/
+ └── lib/
+
+server/
+ ├── src/
+ ├── controllers/
+ ├── routes/
+ ├── queues/
+ ├── workers/
+ ├── services/
+ ├── sockets/
+ └── models/
+```
+
+---
+
+# Bonus Features Implemented
+
+* PDF Export
+* Real-time WebSocket updates
 * Queue-based AI processing
-* Clean exam-paper formatting
+* Responsive UI
+* Structured AI parsing
+* Redis caching/job management
+
+---
+
+# Challenges Solved
+
+* Real-time frontend synchronization using Socket.IO
+* Queue-based background AI processing with BullMQ
+* Production deployment with Railway + Vercel
+* Structured AI output parsing
+* Redis integration and worker handling
+
+---
+
+# Future Improvements
+
+* Authentication & teacher accounts
+* Assignment editing
+* Multi-format exports
+* AI-generated answer keys
+* Advanced analytics dashboard
+
+---
+
+# Author
+
+Ved Sinha
+
+GitHub:
+https://github.com/Ved2701
+
